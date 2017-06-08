@@ -442,6 +442,15 @@
       console.error("ARController.getUserMedia", err)
     });
     var video = document.createElement("video");
+
+    video.autoplay = true;
+    video.webkitPlaysinline = true;
+    video.controls = false;
+    video.loop = true;
+    video.muted = true
+
+    console.log(video);
+
     var initProgress = (function() {
       if (this.videoWidth !== 0) {
         onSuccess(video)
@@ -58612,19 +58621,6 @@ run()
 
     var video = document.createElement('video');
 
-    domElement.autoplay = true;
-    domElement.playsinline = true;
-    domElement.controls = false;
-    domElement.loop = true;
-    domElement.muted = true;
-
-    domElement.setAttribute(autoplay, "autoplay");
-    domElement.setAttribute(playsinline, "playsinline");
-    domElement.setAttribute(loop, "loop");
-    domElement.setAttribute(muted, "nuted");
-
-    console.dir(domElement);
-
     var initProgress = function() {
       if (this.videoWidth !== 0) {
         onSuccess(video);
@@ -60190,12 +60186,6 @@ THREEx.ArToolkitSource.prototype._initSourceWebcam = function(onReady) {
   var domElement = document.createElement('video');
   domElement.style.width = this.parameters.displayWidth+'px'
   domElement.style.height = this.parameters.displayHeight+'px'
-
-  domElement.autoplay = true;
-  domElement.webkitPlaysinline = true;
-  domElement.controls = false;
-  domElement.loop = true;
-  domElement.muted = true
 
   if (navigator.getUserMedia === undefined ){
     alert("WebRTC issue! navigator.getUserMedia not present in your browser");    
