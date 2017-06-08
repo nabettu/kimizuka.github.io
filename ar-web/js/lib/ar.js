@@ -58682,13 +58682,8 @@ run()
     var hdConstraints = {
       audio: false,
       video: {
-        facingMode: {
-          exact: "environment"
-        }
+        mandatory: constraints
       }
-      // video: {
-      //   mandatory: constraints
-      //   }
     };
 
     if ( false ) {
@@ -60145,6 +60140,7 @@ THREEx.ArToolkitSource.prototype._initSourceVideo = function(onReady) {
   domElement.style.objectFit = 'initial'
 
   domElement.autoplay = true;
+  domElement.playsinline = true;
   domElement.webkitPlaysinline = true;
   domElement.controls = false;
   domElement.loop = true;
