@@ -24,7 +24,7 @@
     }
 
     open() {
-      window.open(this.txt.innerText);
+      location.href = this.txt.innerText;
     }
     
     static get CONST() {
