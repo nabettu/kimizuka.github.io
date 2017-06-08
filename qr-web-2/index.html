@@ -4,50 +4,11 @@
   <meta charset="UTF-8" />
   <title>QR-WEB2</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
-  <style>
-    body {
-      margin: 0;
-      background: #000;
-    }
-    #video {
-      display: block;
-      width: 100%; height: 100%;
-      transform: rotate(180deg);
-    }
-  </style>
+  <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
   <video id="video" autoplay playsinline></video>
-  <script src="./qcode-decoder.min.js"></script>
-  <script>
-    var video = document.getElementById("video"),
-        qr    = new QCodeDecoder();
-
-    navigator.getUserMedia({
-      video: {
-        facingMode : {
-          exact : "environment"
-        }
-      }, audio: false
-    }, _handleSuccess, _handleError);
-
-    qr.decodeFromVideo(video, function (err, result) {
-      if (err) {
-        throw err;
-      }
-
-      alert(result);
-
-    }, false);
-
-    function _handleSuccess(localMediaStream) {
-      video.style.display = "block";
-      video.srcObject = localMediaStream;
-    }
-
-    function _handleError() {
-      alert("ERROR: カメラを起動できませんでした。");
-    }
-  </script>
+  <script src="./js/qcode-decoder.min.js"></script>
+  <script src="./js/index.js"></script>
 </body>
 </html>
