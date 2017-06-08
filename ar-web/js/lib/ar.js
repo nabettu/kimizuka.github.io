@@ -60187,9 +60187,18 @@ THREEx.ArToolkitSource.prototype._initSourceWebcam = function(onReady) {
   navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
   var domElement = document.createElement('video');
-  console.log(domElement);
+
   domElement.style.width = this.parameters.displayWidth+'px'
   domElement.style.height = this.parameters.displayHeight+'px'
+
+  domElement.autoplay = true;
+  domElement.playsinline = true;
+  domElement.webkitPlaysinline = true;
+  domElement.controls = false;
+  domElement.loop = true;
+  domElement.muted = true
+
+  console.log(domElement);
 
   if (navigator.getUserMedia === undefined ){
     alert("WebRTC issue! navigator.getUserMedia not present in your browser");    
