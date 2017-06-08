@@ -60182,18 +60182,11 @@ THREEx.ArToolkitSource.prototype._initSourceWebcam = function(onReady) {
   // TODO make it static
   navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
-  var domElement = document.getElementById("k-video");
+  var domElement = document.getElementById("video");
   // var domElement = document.createElement('video');
 
   domElement.style.width = this.parameters.displayWidth+'px'
   domElement.style.height = this.parameters.displayHeight+'px'
-
-  // domElement.autoplay = true;
-  // domElement.playsinline = true;
-  // domElement.webkitPlaysinline = true;
-  // domElement.controls = false;
-  // domElement.loop = true;
-  // domElement.muted = true
 
   console.log(domElement);
 
