@@ -60188,8 +60188,6 @@ THREEx.ArToolkitSource.prototype._initSourceWebcam = function(onReady) {
   domElement.style.width = this.parameters.displayWidth+'px'
   domElement.style.height = this.parameters.displayHeight+'px'
 
-  console.log(domElement);
-
   if (navigator.getUserMedia === undefined ){
     alert("WebRTC issue! navigator.getUserMedia not present in your browser");    
   }
@@ -60202,10 +60200,11 @@ THREEx.ArToolkitSource.prototype._initSourceWebcam = function(onReady) {
                 var constraints = {
       audio: false,
       video: {
-        mandatory: {
-          maxWidth: _this.parameters.sourceWidth,
-          maxHeight: _this.parameters.sourceHeight
-            }
+        // mandatory: {
+        //   maxWidth: _this.parameters.sourceWidth,
+        //   maxHeight: _this.parameters.sourceHeight
+        //     }
+        facingMode: { exact: "environment" }
         }
                 }
 
