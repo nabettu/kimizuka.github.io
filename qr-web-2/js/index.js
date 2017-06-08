@@ -1,9 +1,10 @@
-(function() {
+(() => {
 
   "use stcict";
 
-  var video = document.getElementById("video"),
-      qr    = new window.QCodeDecoder();
+  const video = document.getElementById("video"),
+        qr    = new window.QCodeDecoder(),
+        popup = new window.Popup("overlay");
 
   navigator.getUserMedia({
     video: {
@@ -13,13 +14,23 @@
     }, audio: false
   }, _handleSuccess, _handleError);
 
-  qr.decodeFromVideo(video, function (err, result) {
+  qr.decodeFromVideo(video, (err, result) => {
     if (err) {
       throw err;
     }
 
-    alert(result);
+    if (/^http/.test(result)) {
+      popup.show(result);
+    }
 
+  }, false);
+
+  document.getElementById("open").addEventListener("click", () => {
+    popup.open();
+  }, false);
+  
+  document.getElementById("close").addEventListener("click", () => {
+    popup.hide();
   }, false);
 
   function _handleSuccess(localMediaStream) {
@@ -30,4 +41,5 @@
   function _handleError() {
     alert("ERROR: カメラを起動できませんでした。");
   }
+
 })();

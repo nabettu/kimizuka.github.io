@@ -9,8 +9,19 @@
 <body>
   <div id="wrapper">
     <video id="video" autoplay playsinline></video>
+    <div class="overlay" id="overlay">
+      <div class="popup">
+        <div class="box">
+          <p class="ttl">リンクを開きますか？</p>
+          <p class="txt"></p>
+        </div>
+        <div class="btn open" id="open">開く</div>
+        <div class="btn close" id="close">開かない</div>
+      </div>
+    </div>
   </div>
   <script src="./js/qcode-decoder.min.js"></script>
+  <script src="./js/Popup.js"></script>
   <script src="./js/index.js"></script>
 </body>
 </html>
