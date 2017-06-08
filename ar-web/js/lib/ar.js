@@ -443,8 +443,6 @@
     });
     var video = document.createElement("video");
 
-    console.log(video);
-
     video.autoplay = true;
     video.webkitPlaysinline = true;
     video.controls = false;
@@ -58621,8 +58619,6 @@ run()
 
     var video = document.createElement('video');
 
-    console.log(video);
-
     var initProgress = function() {
       if (this.videoWidth !== 0) {
         onSuccess(video);
@@ -60144,17 +60140,18 @@ THREEx.ArToolkitSource.prototype._initSourceImage = function(onReady) {
 
 THREEx.ArToolkitSource.prototype._initSourceVideo = function(onReady) {
   // TODO make it static
-  var domElement = document.createElement('video');
-  console.log(domElement);
+  var domElement = document.getElementById("k-video");
+
   domElement.src = this.parameters.sourceUrl
 
   domElement.style.objectFit = 'initial'
 
-  domElement.autoplay = true;
-  domElement.webkitPlaysinline = true;
-  domElement.controls = false;
-  domElement.loop = true;
-  domElement.muted = true
+  // domElement.autoplay = true;
+  // domElement.playsinline = true;
+  // domElement.webkitPlaysinline = true;
+  // domElement.controls = false;
+  // domElement.loop = true;
+  // domElement.muted = true;
 
   // trick to trigger the video on android
   document.body.addEventListener('click', function onClick(){
