@@ -60132,7 +60132,6 @@ THREEx.ArToolkitSource.prototype._initSourceImage = function(onReady) {
 
 
 THREEx.ArToolkitSource.prototype._initSourceVideo = function(onReady) {
-  debugger;
   // TODO make it static
   var domElement = document.createElement('video');
   domElement.src = this.parameters.sourceUrl
@@ -60140,21 +60139,10 @@ THREEx.ArToolkitSource.prototype._initSourceVideo = function(onReady) {
   domElement.style.objectFit = 'initial'
 
   domElement.autoplay = true;
-  domElement.playsinline = true;
   domElement.webkitPlaysinline = true;
   domElement.controls = false;
   domElement.loop = true;
   domElement.muted = true
-
-  console.dir(domElement);
-
-  domElement.setAttribute(autoplay, true);
-  domElement.setAttribute(playsinline, true);
-  domElement.setAttribute(controls, false);
-  domElement.setAttribute(loop, true);
-  domElement.setAttribute(muted, true);
-
-  console.dir(domElement);
 
   // trick to trigger the video on android
   document.body.addEventListener('click', function onClick(){
@@ -60190,6 +60178,11 @@ THREEx.ArToolkitSource.prototype._initSourceWebcam = function(onReady) {
   domElement.style.width = this.parameters.displayWidth+'px'
   domElement.style.height = this.parameters.displayHeight+'px'
 
+  domElement.autoplay = true;
+  domElement.playsinline = true;
+  domElement.controls = false;
+  domElement.loop = true;
+  domElement.muted = true
 
   if (navigator.getUserMedia === undefined ){
     alert("WebRTC issue! navigator.getUserMedia not present in your browser");    
