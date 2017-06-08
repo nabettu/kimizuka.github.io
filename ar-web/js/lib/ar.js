@@ -58623,6 +58623,8 @@ run()
     domElement.setAttribute(loop, "loop");
     domElement.setAttribute(muted, "nuted");
 
+    console.dir(domElement);
+
     var initProgress = function() {
       if (this.videoWidth !== 0) {
         onSuccess(video);
