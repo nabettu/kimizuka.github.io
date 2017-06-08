@@ -58612,6 +58612,12 @@ run()
 
     var video = document.createElement('video');
 
+    domElement.autoplay = true;
+    domElement.playsinline = true;
+    domElement.controls = false;
+    domElement.loop = true;
+    domElement.muted = true
+
     var initProgress = function() {
       if (this.videoWidth !== 0) {
         onSuccess(video);
@@ -60179,7 +60185,7 @@ THREEx.ArToolkitSource.prototype._initSourceWebcam = function(onReady) {
   domElement.style.height = this.parameters.displayHeight+'px'
 
   domElement.autoplay = true;
-  domElement.playsinline = true;
+  domElement.webkitPlaysinline = true;
   domElement.controls = false;
   domElement.loop = true;
   domElement.muted = true
