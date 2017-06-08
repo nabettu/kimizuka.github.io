@@ -443,13 +443,13 @@
     });
     var video = document.createElement("video");
 
+    console.log(video);
+
     video.autoplay = true;
     video.webkitPlaysinline = true;
     video.controls = false;
     video.loop = true;
     video.muted = true
-
-    console.log(video);
 
     var initProgress = (function() {
       if (this.videoWidth !== 0) {
@@ -58621,6 +58621,8 @@ run()
 
     var video = document.createElement('video');
 
+    console.log(video);
+
     var initProgress = function() {
       if (this.videoWidth !== 0) {
         onSuccess(video);
@@ -60143,6 +60145,7 @@ THREEx.ArToolkitSource.prototype._initSourceImage = function(onReady) {
 THREEx.ArToolkitSource.prototype._initSourceVideo = function(onReady) {
   // TODO make it static
   var domElement = document.createElement('video');
+  console.log(domElement);
   domElement.src = this.parameters.sourceUrl
 
   domElement.style.objectFit = 'initial'
@@ -60184,6 +60187,7 @@ THREEx.ArToolkitSource.prototype._initSourceWebcam = function(onReady) {
   navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
   var domElement = document.createElement('video');
+  console.log(domElement);
   domElement.style.width = this.parameters.displayWidth+'px'
   domElement.style.height = this.parameters.displayHeight+'px'
 
