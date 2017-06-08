@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>QR-WEB2</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
-  <style type="text/css">
+  <style>
     body {
       background: #000;
     }
@@ -18,18 +18,17 @@
   </style>
 </head>
 <body>
-  <video id="video"></video>
+  <video id="video" autoplay playsinline></video>
   <script src="./qcode-decoder.min.js"></script>
   <script>
-    var video = document.getElementById("video");
+    var video = document.getElementById("video"),
         qr    = new QCodeDecoder();
 
-    navigator.webkitGetUserMedia({
+    navigator.getUserMedia({
       video: {
-        mandatory: {
-          maxWidth  : 320, minWidth  : 320,
-          maxHeight : 240, minHeight : 240
-        } 
+        facingMode : {
+          exact : "environment"
+        }
       }, audio: false
     }, _handleSuccess, _handleError);
 
@@ -44,8 +43,7 @@
 
     function _handleSuccess(localMediaStream) {
       video.style.display = "block";
-      video.src = window.URL.createObjectURL(localMediaStream);
-      video.play();
+      video.srcObject = localMediaStream;
     }
 
     function _handleError() {
