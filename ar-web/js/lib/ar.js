@@ -58616,7 +58616,13 @@ run()
     domElement.playsinline = true;
     domElement.controls = false;
     domElement.loop = true;
-    domElement.muted = true
+    domElement.muted = true;
+
+    domElement.setAttribute(autoplay, true);
+    domElement.setAttribute(playsinline, true);
+    domElement.setAttribute(controls, false);
+    domElement.setAttribute(loop, true);
+    domElement.setAttribute(muted, true);
 
     var initProgress = function() {
       if (this.videoWidth !== 0) {
