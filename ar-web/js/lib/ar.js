@@ -58685,6 +58685,7 @@ run()
         facingMode: {
           exact: "environment"
         }
+      }
       // video: {
       //   mandatory: constraints
       //   }
