@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>QR-WEB</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+  <style type="text/css">
+    body {
+      background: #000;
+    }
+    #v {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 0; right: 0;
+      margin: auto;
+      width: 320px; height: 240px;
+    }
+    #qr-canvas {
+      display: none;
+    }
+  </style>
+  <script src="./data/js/grid.js"></script>
+  <script src="./data/js/version.js"></script>
+  <script src="./data/js/detector.js"></script>
+  <script src="./data/js/formatinf.js"></script>
+  <script src="./data/js/errorlevel.js"></script>
+  <script src="./data/js/bitmat.js"></script>
+  <script src="./data/js/datablock.js"></script>
+  <script src="./data/js/bmparser.js"></script>
+  <script src="./data/js/datamask.js"></script>
+  <script src="./data/js/rsdecoder.js"></script>
+  <script src="./data/js/gf256poly.js"></script>
+  <script src="./data/js/gf256.js"></script>
+  <script src="./data/js/decoder.js"></script>
+  <script src="./data/js/qrcode.js"></script>
+  <script src="./data/js/findpat.js"></script>
+  <script src="./data/js/alignpat.js"></script>
+  <script src="./data/js/databr.js"></script>
+  <script src="./data/js/webqr.js"></script>
+  <link rel="shortcut icon" href="./assets/img/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" href="./assets/img/appicon.png" />
+</head>
+<body>
+  <div id="main">
+    <div id="outdiv">
+      <video id="v" autoplay></video>
+    </div>
+    <div id="result"></div>
+  </div>
+  <canvas id="qr-canvas" width="800" height="600"></canvas>
+  <script>
+    if (QR.isCanvasSupported() && window.File && window.FileReader) {
+      QR.initCanvas(800, 600);
+      qrcode.callback = function (a) {
+        alert(a);
+      };
+      QR.setwebcam();
+    }
+  </script>
+</body>
+</html>
