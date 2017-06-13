@@ -58,10 +58,12 @@ if (navigator.getUserMedia) {
 
       videostyle = getComputedStyle(videoel);
 
-      console.log(parseInt(videostyle.width, 10), parseInt(videostyle.height, 10));
+      setTimeout(() => {
+        console.log(parseInt(videostyle.width, 10), parseInt(videostyle.height, 10));
 
-      overlay.setAttribute("width", parseInt(videostyle.width, 10));
-      overlay.setAttribute("height", parseInt(videostyle.height, 10));
+        overlay.setAttribute("width", parseInt(videostyle.width, 10));
+        overlay.setAttribute("height", parseInt(videostyle.height, 10));
+      }, 500);
     }
   }, function() {
     insertAltVideo(vid);
