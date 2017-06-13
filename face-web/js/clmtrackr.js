@@ -3392,6 +3392,9 @@ var jsfeat_face = function(video, maxWorkSize, useWebWorkers) {
   var videoWidth = video.width;
   var videoHeight = video.height;
 
+  console.log(videoWidth);
+  console.log(videoHeight);
+
   // scale down canvas we do detection on (to reduce noisy detections)
   var scale = Math.min(maxWorkSize/videoWidth, maxWorkSize/videoHeight);
   var w = (videoWidth*scale)|0;
