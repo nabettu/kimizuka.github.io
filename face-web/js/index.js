@@ -90,7 +90,7 @@ function startVideo() {
 
 function drawLoop() {
   requestAnimFrame(drawLoop);
-  overlayCC.clearRect(0, 0, 400, 300);
+  overlayCC.clearRect(0, 0, overlay.width, overlay.height);
 
   if (ctrack.getCurrentPosition()) {
     ctrack.draw(overlay);
