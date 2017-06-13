@@ -137,6 +137,8 @@
           navigator.getUserMedia(videoSelector, function( stream ) {
             var videostyle;
 
+            console.log(vid.mozCaptureStream);
+
             if (vid.mozCaptureStream) {
               vid.mozSrcObject = stream;
             } else {
@@ -146,8 +148,6 @@
 
               overlay.width  = parseInt(videostyle.width, 10);
               overlay.height = parseInt(videostyle.height, 10);
-
-
             }
           }, function() {
             insertAltVideo(vid);
