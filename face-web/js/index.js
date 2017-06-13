@@ -54,15 +54,18 @@ if (navigator.getUserMedia) {
     } else {
       vid.srcObject = stream;
 
-      var videostyle;
+      var videostyle, width, height;
 
       videostyle = getComputedStyle(videoel);
 
       setTimeout(() => {
-        console.log(parseInt(videostyle.width, 10), parseInt(videostyle.height, 10));
+        width = parseInt(videostyle.width, 10);
+        height = parseInt(videostyle.height, 10);
 
-        overlay.setAttribute("width", parseInt(videostyle.width, 10));
-        overlay.setAttribute("height", parseInt(videostyle.height, 10));
+        overlay.setAttribute("width", width);
+        overlay.setAttribute("height", height);
+        vid.width = width;
+        vid.height = height;
       }, 100);
     }
   }, function() {
