@@ -14,14 +14,9 @@ document.getElementById("container").appendChild(stats.domElement);
 
 function enablestart() {
   var startbutton = document.getElementById("startbutton");
-  var videostyle;
 
   startbutton.value = "start";
   startbutton.disabled = null;
-  videostyle = getComputedStyle(videoel);
-
-  overlay.width = parseInt(videostyle.width, 10);
-  overlay.height = parseInt(videostyle.height, 10);
 }
 
 var insertAltVideo = function(video) {
@@ -58,6 +53,15 @@ if (navigator.getUserMedia) {
       vid.mozSrcObject = stream;
     } else {
       vid.srcObject = stream;
+
+      var videostyle;
+
+      videostyle = getComputedStyle(videoel);
+
+      console.log(parseInt(videostyle.width, 10), parseInt(videostyle.height, 10));
+
+      overlay.setAttribute("width", parseInt(videostyle.width, 10));
+      overlay.setAttribute("height", parseInt(videostyle.height, 10));
     }
   }, function() {
     insertAltVideo(vid);
