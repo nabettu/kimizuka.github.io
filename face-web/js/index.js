@@ -63,7 +63,7 @@ if (navigator.getUserMedia) {
 
         overlay.setAttribute("width", parseInt(videostyle.width, 10));
         overlay.setAttribute("height", parseInt(videostyle.height, 10));
-      }, 0);
+      }, 100);
     }
   }, function() {
     insertAltVideo(vid);
