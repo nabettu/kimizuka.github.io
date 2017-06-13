@@ -1,5 +1,3 @@
-debugger;
-
 var vid = document.getElementById("videoel");
 var overlay = document.getElementById("overlay");
 var overlayCC = overlay.getContext("2d");
@@ -58,6 +56,8 @@ if (navigator.getUserMedia) {
       vid.srcObject = stream;
 
       videostyle = getComputedStyle(videoel);
+
+      console.log(parseInt(videostyle.width, 10), parseInt(videostyle.height, 10));
 
       overlay.width = parseInt(videostyle.width, 10);
       overlay.height = parseInt(videostyle.height, 10);
