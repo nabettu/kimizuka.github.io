@@ -5,7 +5,7 @@
   let canvas = doc.getElementById("canvas"),
       ctx    = canvas.getContext("2d");
   
-  navigator.webkitGetUserMedia({
+  navigator.getUserMedia({
     audio: true
   }, _handleSuccess, _handleError);
   
