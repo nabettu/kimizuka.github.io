@@ -16,7 +16,7 @@
 
     console.log(audioCtx);
 
-    let LENGTH = 256,
+    let LENGTH = 32,
         data   = new Uint8Array(LENGTH),
         w      = 0,
         i      = 0;
@@ -24,7 +24,7 @@
 
     analyser.fftSize = 1024;
 
-    src.connect(audioCtx.destination);
+    // src.connect(audioCtx.destination);
     src.connect(analyser);
 
     setInterval(function() {
@@ -38,6 +38,7 @@
       analyser.getByteFrequencyData(data);
 
       for (i = 0; i < LENGTH; ++i) {
+        console.log(data[i]);
         ctx.rect(i * w, canvas.height - data[i], w, data[i]);
       }
 
