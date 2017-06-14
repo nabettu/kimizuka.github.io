@@ -11,7 +11,10 @@
   
   function _handleSuccess(evt) {
     let audioCtx = new (window.AudioContext || window.webkitAudioContext)(),
-        src      = audioCtx.createMediaStreamSource(evt),
+        options  = {
+          mediaStream : evt
+        },
+        src      = new MediaStreamAudioSourceNode(audioCtx, options),
         analyser = audioCtx.createAnalyser(evt);
 
     let LENGTH = 16,
@@ -22,9 +25,8 @@
     analyser.fftSize = 1024;
 
     document.addEventListener("touchstart", function handleTouchStart() {
-      // src.connect(audioCtx.destination);
+      src.connect(audioCtx.destination);
       src.connect(analyser);
-      console.log(src);
 
       document.removeEventListener("touchstart", handleTouchStart, false);
 
