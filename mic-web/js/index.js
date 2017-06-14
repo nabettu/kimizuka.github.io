@@ -2,8 +2,9 @@
 
   "use strict";
   
-  let canvas = document.getElementById("canvas"),
-      ctx    = canvas.getContext("2d");
+  let canvas    = document.getElementById("canvas"),
+      ctx       = canvas.getContext("2d"),
+      ZOOM_RATE = 2;
   
   navigator.getUserMedia({
     audio: true
@@ -14,7 +15,7 @@
         options  = {
           mediaStream : evt
         },
-        src      = new MediaStreamAudioSourceNode(audioCtx, options),
+        src      = new (window.MediaStreamAudioSourceNode || window.webkitMediaStreamAudioSourceNode)(audioCtx, options),
         analyser = audioCtx.createAnalyser(evt);
 
     let LENGTH = 16,
@@ -41,7 +42,7 @@
         analyser.getByteFrequencyData(data);
 
         for (i = 0; i < LENGTH; ++i) {
-          ctx.rect(i * w, canvas.height - data[i] * 2, w, data[i] * 2);
+          ctx.rect(i * w, canvas.height - data[i] * ZOOM_RATE, w, data[i] * ZOOM_RATE);
         }
 
         ctx.fill();
