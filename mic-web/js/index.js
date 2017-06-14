@@ -10,7 +10,6 @@
   }, _handleSuccess, _handleError);
   
   function _handleSuccess(evt) {
-    debugger;
     let audioCtx = new AudioContext(),
         src      = audioCtx.createMediaStreamSource(evt),
         analyser = audioCtx.createAnalyser(evt);
