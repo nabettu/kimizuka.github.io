@@ -11,7 +11,11 @@
   
   function _handleSuccess(evt) {
     let audioCtx = new (window.AudioContext || window.webkitAudioContext)(),
-        src      = audioCtx.createMediaStreamSource(evt),
+        options  = {
+          mediaStream : evt
+        },
+        src      = MediaStreamAudioSourceNode(audioCtx, options),
+        // src      = audioCtx.createMediaStreamSource(evt),
         analyser = audioCtx.createAnalyser(evt);
 
     let LENGTH = 16,
