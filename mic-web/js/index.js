@@ -1,8 +1,8 @@
-(function(win, doc) {
+(function() {
 
   "use strict";
   
-  let canvas = doc.getElementById("canvas"),
+  let canvas = document.getElementById("canvas"),
       ctx    = canvas.getContext("2d");
   
   navigator.getUserMedia({
@@ -10,44 +10,45 @@
   }, _handleSuccess, _handleError);
   
   function _handleSuccess(evt) {
-    let audioCtx = new webkitAudioContext(),
+    let audioCtx = new (window.AudioContext || window.webkitAudioContext)(),
         src      = audioCtx.createMediaStreamSource(evt),
         analyser = audioCtx.createAnalyser(evt);
 
-    console.log(audioCtx);
-
-    let LENGTH = 32,
+    let LENGTH = 16,
         data   = new Uint8Array(LENGTH),
         w      = 0,
         i      = 0;
 
-
     analyser.fftSize = 1024;
 
-    // src.connect(audioCtx.destination);
-    src.connect(analyser);
+    document.addEventListener("touchstart", function handleTouchStart() {
+      src.connect(audioCtx.destination);
+      src.connect(analyser);
+      console.log(src);
 
-    setInterval(function() {
-      canvas.width  = window.innerWidth;
-      canvas.height = window.innerHeight;
+      document.removeEventListener("touchstart", handleTouchStart, false);
 
-      ctx.fillStyle = "#3e3e3e";
+      setInterval(function() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-      w = canvas.width / LENGTH,
+        ctx.fillStyle = "#3e3e3e";
 
-      analyser.getByteFrequencyData(data);
+        w = canvas.width / LENGTH,
 
-      for (i = 0; i < LENGTH; ++i) {
-        console.log(data[i]);
-        ctx.rect(i * w, canvas.height - data[i], w, data[i]);
-      }
+        analyser.getByteFrequencyData(data);
 
-      ctx.fill();
-    }, 2000);
+        for (i = 0; i < LENGTH; ++i) {
+          ctx.rect(i * w, canvas.height - data[i] * 2, w, data[i] * 2);
+        }
+
+        ctx.fill();
+      }, 20);
+    }, false);
   }
 
   function _handleError() {
     alert("Error!");
   }
 
-})(this, document);
+})();
