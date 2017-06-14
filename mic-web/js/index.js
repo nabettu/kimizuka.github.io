@@ -14,8 +14,8 @@
         options  = {
           mediaStream : evt
         },
-        src      = new MediaStreamAudioSourceNode(audioCtx, options),
-        // src      = audioCtx.createMediaStreamSource(evt),
+        // src      = new MediaStreamAudioSourceNode(audioCtx, options),
+        src      = audioCtx.createMediaStreamSource(evt),
         analyser = audioCtx.createAnalyser(evt);
 
     let LENGTH = 16,
