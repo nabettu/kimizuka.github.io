@@ -2,9 +2,8 @@
 
   "use strict";
   
-  let canvas    = document.getElementById("canvas"),
-      ctx       = canvas.getContext("2d"),
-      ZOOM_RATE = 2;
+  let canvas = document.getElementById("canvas"),
+      ctx    = canvas.getContext("2d");
   
   navigator.getUserMedia({
     audio: true
@@ -12,10 +11,7 @@
   
   function _handleSuccess(evt) {
     let audioCtx = new (window.AudioContext || window.webkitAudioContext)(),
-        options  = {
-          mediaStream : evt
-        },
-        src      = new (window.MediaStreamAudioSourceNode || window.webkitMediaStreamAudioSourceNode)(audioCtx, options),
+        src      = audioCtx.createMediaStreamSource(evt),
         analyser = audioCtx.createAnalyser(evt);
 
     let LENGTH = 16,
@@ -26,8 +22,10 @@
     analyser.fftSize = 1024;
 
     document.addEventListener("touchstart", function handleTouchStart() {
-      src.connect(audioCtx.destination);
       src.connect(analyser);
+      evt.getTracks().forEach(function(track) {
+        console.log(track);
+      });
 
       document.removeEventListener("touchstart", handleTouchStart, false);
 
@@ -42,7 +40,7 @@
         analyser.getByteFrequencyData(data);
 
         for (i = 0; i < LENGTH; ++i) {
-          ctx.rect(i * w, canvas.height - data[i] * ZOOM_RATE, w, data[i] * ZOOM_RATE);
+          ctx.rect(i * w, canvas.height - data[i] * 2, w, data[i] * 2);
         }
 
         ctx.fill();
