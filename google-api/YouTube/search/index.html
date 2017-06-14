@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>search | google-api</title>
+</head>
+<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script>
+    (function(win, doc, $) {
+
+      "use strict";
+
+      var KEY     = "AIzaSyCcdCQ-nMukTK6Kl2xPkrCK6akiG2_o0w4", // https://console.developers.google.com
+          KEYWORD = "スピッツ";
+
+      $.ajax({
+        type     : "get",
+        dataType : "jsonp",
+        url      : "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&q=" + KEYWORD + "&key=" + KEY
+      }).done(function(evt) {
+        console.log(evt);
+      });
+    })(this, document, $);
+  </script>
+</body>
+</html>

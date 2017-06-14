@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>duration | google-api</title>
+  <style>
+    body {
+      color: #3e3e3e;
+      background: #e3e3e3;
+    }
+  </style>
+</head>
+<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script>
+    (function(win, doc, $) {
+
+      "use strict";
+
+      var KEY = "AIzaSyCcdCQ-nMukTK6Kl2xPkrCK6akiG2_o0w4", // https://console.developers.google.com
+          ID  = "bkDLvKgI-dQ"; // スピッツ / メモリーズ
+
+      $.ajax({
+        type     : "get",
+        dataType : "jsonp",
+        url      : "https://www.googleapis.com/youtube/v3/videos?id=" + ID + "&key=" + KEY + "&part=contentDetails"
+      }).done(function(evt) {
+        console.dir(evt);
+        $(doc.body).append($("<p>Memories's duration is " + _convertDuration(evt.items[0].contentDetails.duration) + "s.</p>"));
+      });
+
+      function _convertDuration(durationStr) {
+        var str = durationStr,
+              h = /^PT([0-9]+)H/.exec(str) ? /^PT([0-9]+)H/.exec(str)[1] : 0,
+              m = /([0-9]+)M/.exec(str)    ? /([0-9]+)M/.exec(str)[1]    : 0,
+              s = /([0-9]+)S$/.exec(str)   ? /([0-9]+)S$/.exec(str)[1]   : 0;
+
+        return parseInt(s, 10) + parseInt(m, 10) * 60 + parseInt(h , 10) * 60 * 60;
+      }
+
+    })(this, document, $);
+  </script>
+</body>
+</html>
