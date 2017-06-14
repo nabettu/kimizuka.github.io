@@ -14,7 +14,7 @@
         options  = {
           mediaStream : evt
         },
-        src      = MediaStreamAudioSourceNode(audioCtx, options),
+        src      = new MediaStreamAudioSourceNode(audioCtx, options),
         // src      = audioCtx.createMediaStreamSource(evt),
         analyser = audioCtx.createAnalyser(evt);
 
