@@ -10,7 +10,7 @@
   }, _handleSuccess, _handleError);
   
   function _handleSuccess(evt) {
-    let audioCtx = new AudioContext(),
+    let audioCtx = new webkitAudioContext(),
         src      = audioCtx.createMediaStreamSource(evt),
         analyser = audioCtx.createAnalyser(evt);
 
