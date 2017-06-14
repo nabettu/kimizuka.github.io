@@ -14,6 +14,8 @@
         src      = audioCtx.createMediaStreamSource(evt),
         analyser = audioCtx.createAnalyser(evt);
 
+    console.log(audioCtx);
+
     let LENGTH = 256,
         data   = new Uint8Array(LENGTH),
         w      = 0,
@@ -36,7 +38,6 @@
       analyser.getByteFrequencyData(data);
 
       for (i = 0; i < LENGTH; ++i) {
-        console.log(data[i]);
         ctx.rect(i * w, canvas.height - data[i], w, data[i]);
       }
 
