@@ -22,7 +22,7 @@
     analyser.fftSize = 1024;
 
     document.addEventListener("touchstart", function handleTouchStart() {
-      src.connect(audioCtx.destination);
+      // src.connect(audioCtx.destination);
       src.connect(analyser);
       console.log(src);
 
