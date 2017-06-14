@@ -36,11 +36,12 @@
       analyser.getByteFrequencyData(data);
 
       for (i = 0; i < LENGTH; ++i) {
+        console.log(data[i])
         ctx.rect(i * w, canvas.height - data[i], w, data[i]);
       }
 
       ctx.fill();
-    }, 20);
+    }, 2000);
   }
 
   function _handleError() {
