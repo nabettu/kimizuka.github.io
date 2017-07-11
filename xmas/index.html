@@ -17,47 +17,49 @@
   </style>
 </head>
 <body>
-  <video id="camera" muted autoplay loop style="display: none;"></video>
-  <video id="video" muted autoplay loop src="./sample_santa_color.mp4" style="display: none;"></video>
+  <video id="camera" muted autoplay loop playsinline style="display: none;"></video>
+  <video id="video" muted autoplay loop playsinline src="./sample_santa_color.mp4" style="display: none;"></video>
   <canvas id="canvas"></canvas>
   <script>
+    const LIMIT = 40;
+
+    const medias = {audio : false, video : {
+            facingMode : {
+              exact : "environment"
+            }
+          }},
+          camera    = document.getElementById("camera"),
+          video     = document.getElementById("video"),
+          canvas    = document.getElementById("canvas"),
+          subCanvas = document.createElement("canvas")
+          ctx       = canvas.getContext("2d"),
+          sbuCtx    = subCanvas.getContext("2d");
+
+    let imgData, data;
+
+    navigator.getUserMedia(medias, (stream) => {
+      camera.srcObject = stream;
+    }, (err) => {
+      alert(err);
+    });
+
     window.onload = () => {
-      const LIMIT = 40;
-
-      const medias = {audio : false, video : {
-              facingMode : {
-                exact : "environment"
-              }
-            }},
-            camera  = document.getElementById("camera"),
-            video   = document.getElementById("video"),
-            canvas  = document.getElementById("canvas"),
-            ctx     = canvas.getContext("2d");
-
-      let imgData, data;
-
-      canvas.width  = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      navigator.getUserMedia(medias, (stream) => {
-        camera.srcObject = stream;
-      }, (err) => {
-        alert(err);
-      });
-
       requestAnimationFrame(function render() {
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        // canvas.width  = window.innerWidth;
+        // canvas.height = window.innerHeight;
 
-        imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        data    = imgData.data;
+        // ctx.drawImage(video, 0, 0);
 
-        for (let i = 0; i < data.length; i += 4) {
-          if (data[i + 0] < LIMIT && data[i + 1] < LIMIT && data[i + 2] < LIMIT) {
-            data[i + 3] = 0;
-          }
-        }
+        // imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        // data    = imgData.data;
 
-        ctx.drawImage(camera, 0, 0, canvas.width, canvas.height);
+        // for (let i = 0; i < data.length; i += 4) {
+        //   if (data[i + 0] < LIMIT && data[i + 1] < LIMIT && data[i + 2] < LIMIT) {
+        //     data[i + 3] = 0;
+        //   }
+        // }
+
+        ctx.drawImage(camera, 0, 0);
         ctx.putImageData(imgData, 0, 0);
 
         requestAnimationFrame(render);
