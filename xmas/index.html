@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>X'mas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+  <meta name="generator" content="Sublime Text 3" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="format-detection" content="telephone=no" />
+  <style>
+    * {
+      margin: 0; padding: 0;
+    }
+    #canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <video id="camera" muted autoplay loop style="display: none;"></video>
+  <video id="video" muted autoplay loop src="./sample_santa_color.mp4" style="display: none;"></video>
+  <canvas id="canvas"></canvas>
+  <script>
+    window.onload = () => {
+      const LIMIT = 40;
+
+      const medias = {audio : false, video : {
+              facingMode : {
+                exact : "environment"
+              }
+            }},
+            camera  = document.getElementById("camera"),
+            video   = document.getElementById("video"),
+            canvas  = document.getElementById("canvas"),
+            ctx     = canvas.getContext("2d");
+
+      let imgData, data;
+
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      navigator.getUserMedia(medias, (stream) => {
+        camera.srcObject = stream;
+      }, (err) => {
+        alert(err);
+      });
+
+      requestAnimationFrame(function render() {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        data    = imgData.data;
+
+        for (let i = 0; i < data.length; i += 4) {
+          if (data[i + 0] < LIMIT && data[i + 1] < LIMIT && data[i + 2] < LIMIT) {
+            data[i + 3] = 0;
+          }
+        }
+
+        ctx.drawImage(camera, 0, 0, canvas.width, canvas.height);
+        ctx.putImageData(imgData, 0, 0);
+
+        requestAnimationFrame(render);
+      });
+    };
+  </script>
+</body>
+</html>
