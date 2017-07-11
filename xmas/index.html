@@ -17,8 +17,8 @@
   </style>
 </head>
 <body>
-  <video id="camera" muted autoplay loop playsinline style="display: none;"></video>
   <video id="video" muted autoplay loop playsinline src="./sample_santa_color.mp4" style="display: none;"></video>
+  <video id="camera" muted autoplay loop playsinline></video>
   <canvas id="canvas"></canvas>
   <script>
     const LIMIT = 40;
@@ -43,27 +43,26 @@
       alert(err);
     });
 
-    window.onload = () => {
-      requestAnimationFrame(function render() {
-        canvas.width  = window.innerWidth;
-        canvas.height = window.innerHeight;
+    // window.onload = () => {
+    //   requestAnimationFrame(function render() {
+    //     canvas.width  = window.innerWidth;
+    //     canvas.height = window.innerHeight;
 
-        // ctx.drawImage(video, 0, 0);
+    //     ctx.drawImage(video, 0, 0);
 
-        // imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        // data    = imgData.data;
+    //     imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    //     data    = imgData.data;
 
-        // for (let i = 0; i < data.length; i += 4) {
-        //   if (data[i + 0] < LIMIT && data[i + 1] < LIMIT && data[i + 2] < LIMIT) {
-        //     data[i + 3] = 0;
-        //   }
-        // }
+    //     for (let i = 0; i < data.length; i += 4) {
+    //       if (data[i + 0] < LIMIT && data[i + 1] < LIMIT && data[i + 2] < LIMIT) {
+    //         data[i + 3] = 0;
+    //       }
+    //     }
 
-        ctx.drawImage(camera, 0, 0);
-        // ctx.putImageData(imgData, 0, 0);
+    //     ctx.putImageData(imgData, 0, 0);
 
-        requestAnimationFrame(render);
-      });
+    //     requestAnimationFrame(render);
+    //   });
     };
   </script>
 </body>
