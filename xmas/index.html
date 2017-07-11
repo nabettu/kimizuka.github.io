@@ -45,8 +45,8 @@
 
     window.onload = () => {
       requestAnimationFrame(function render() {
-        // canvas.width  = window.innerWidth;
-        // canvas.height = window.innerHeight;
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
 
         // ctx.drawImage(video, 0, 0);
 
@@ -60,7 +60,7 @@
         // }
 
         ctx.drawImage(camera, 0, 0);
-        ctx.putImageData(imgData, 0, 0);
+        // ctx.putImageData(imgData, 0, 0);
 
         requestAnimationFrame(render);
       });
