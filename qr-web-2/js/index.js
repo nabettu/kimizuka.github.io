@@ -15,6 +15,8 @@
   }, _handleSuccess, _handleError);
 
   qr.decodeFromVideo(video, (err, result) => {
+    console.log(result);
+
     if (err) {
       throw err;
     }
