@@ -2,6 +2,12 @@
 @import url(https://fonts.googleapis.com/earlyaccess/notosansjp.css);
 @import url(./reset.css);
 
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+
 html {
   height: 100%;
   font: 10px "Noto Sans Japanese", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Meiryo, "メイリオ", sans-serif;
