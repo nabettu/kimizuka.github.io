@@ -10,28 +10,30 @@
   }, _handleSuccess, _handleError);
   
   function _handleSuccess(evt) {
-    let audioCtx = new (window.AudioContext || window.webkitAudioContext)(),
-        options  = {
-          mediaStream : evt
-        },
-        // src      = new MediaStreamAudioSourceNode(audioCtx, options),
-        src      = audioCtx.createMediaStreamSource(evt),
-        analyser = audioCtx.createAnalyser(evt);
+    document.addEventListener("touchend", handleTouchEnd, false);
 
-    let LENGTH = 16,
-        data   = new Uint8Array(LENGTH),
-        w      = 0,
-        i      = 0;
+    function handleTouchEnd() {
+      let audioCtx = new (window.AudioContext || window.webkitAudioContext)(),
+          options  = {
+            mediaStream : evt
+          },
+          // src      = new MediaStreamAudioSourceNode(audioCtx, options),
+          src      = audioCtx.createMediaStreamSource(evt),
+          analyser = audioCtx.createAnalyser(evt);
 
-    analyser.fftSize = 1024;
+      let LENGTH = 16,
+          data   = new Uint8Array(LENGTH),
+          w      = 0,
+          i      = 0;
 
-    document.addEventListener("touchstart", function handleTouchStart() {
+      analyser.fftSize = 1024;
+
       src.connect(analyser);
       evt.getTracks().forEach(function(track) {
         console.log(track);
       });
 
-      document.removeEventListener("touchstart", handleTouchStart, false);
+      document.removeEventListener("touchstart", handleTouchEnd, false);
 
       setInterval(function() {
         canvas.width  = window.innerWidth;
@@ -49,7 +51,7 @@
 
         ctx.fill();
       }, 20);
-    }, false);
+    }
   }
 
   function _handleError() {
