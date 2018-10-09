@@ -8,9 +8,7 @@
 
   navigator.getUserMedia({
     video: {
-      facingMode : {
-        exact : "environment"
-      }
+      facingMode: "user"
     }, audio: false
   }, _handleSuccess, _handleError);
 
